@@ -5,7 +5,7 @@ authors = ["СЕВЕРНЫЙBOYKISSER"]
 edition = "2021"
 description = "Anti virtualmachine or sites for check you program"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/si11ykat/anti-vm-rust"
+repository = "https://github.com/northernboykisser/anti-vm-rust"
 readme = "README.md"
 
 
