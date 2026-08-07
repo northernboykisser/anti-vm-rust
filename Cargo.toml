@@ -1,12 +1,12 @@
 [package]
-name = "antivm" # Имя должно быть уникальным на crates.io
+name = "antivm"
 version = "0.1.0"
 authors = ["СЕВЕРНЫЙBOYKISSER"]
 edition = "2021"
 description = "Anti virtualmachine or sites for check you program"
-license = "MIT OR Apache-2.0" # Укажите лицензию (например, MIT, Apache-2.0)
-repository = "https://github.com" # Ссылка на исходный код
-readme = "README.md" # Ссылка на файл документации
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/si11ykat/anti-vm-rust"
+readme = "README.md"
 
 
 [dependencies]
