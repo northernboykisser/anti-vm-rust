@@ -1,0 +1,21 @@
+[package]
+name = "antivm" # Имя должно быть уникальным на crates.io
+version = "0.1.0"
+authors = ["СЕВЕРНЫЙBOYKISSER"]
+edition = "2021"
+description = "Anti virtualmachine or sites for check you program"
+license = "MIT OR Apache-2.0" # Укажите лицензию (например, MIT, Apache-2.0)
+repository = "https://github.com" # Ссылка на исходный код
+readme = "README.md" # Ссылка на файл документации
+
+
+[dependencies]
+ureq     = { version = "2.10", features = ["json"] }
+serde    = { version = "1",    features = ["derive"] }
+serde_json = "1"
+sysinfo  = { version = "0.32", default-features = false, features = ["system"] }
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["winuser"] }
+
+[dev-dependencies]
