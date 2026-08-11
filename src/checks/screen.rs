@@ -1,5 +1,3 @@
-use std::process;
-
 use crate::protection::Protection;
 
 impl Protection {
@@ -10,7 +8,7 @@ impl Protection {
             let w = unsafe { GetSystemMetrics(SM_CXSCREEN) };
             let h = unsafe { GetSystemMetrics(SM_CYSCREEN) };
             if w == 800 && h == 600 {
-                process::exit(0);
+                self.on_fail();
             }
         }
     }

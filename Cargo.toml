@@ -7,7 +7,7 @@ description = "Anti virtualmachine or sites for check you program"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/northernboykisser/anti-vm-rust"
 readme = "README.md"
-
+build = "build.rs"
 
 [dependencies]
 ureq     = { version = "2.10", features = ["json"] }

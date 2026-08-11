@@ -1,5 +1,4 @@
 use std::net::{SocketAddr, TcpStream};
-use std::process;
 use std::time::Duration;
 
 use crate::config::NETWORK_CHECK_HOST;
@@ -12,7 +11,7 @@ impl Protection {
             .expect("Invalid network check address");
         let timeout = Duration::from_secs(self.timeout_secs);
         if TcpStream::connect_timeout(&addr, timeout).is_err() {
-            process::exit(0);
+            self.on_fail();
         }
     }
 }

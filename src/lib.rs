@@ -66,4 +66,28 @@ mod tests {
             .set_ram(false)
             .init();
     }
+
+    #[test]
+    fn filtered_callback_runs_instead_of_exit() {
+        use std::cell::Cell;
+        use std::rc::Rc;
+
+        let called = Rc::new(Cell::new(false));
+        let flag = Rc::clone(&called);
+        let protection = Protection {
+            ip_filter:       false,
+            http_filter:     false,
+            network_filter:  false,
+            vm_filter:       false,
+            screen_filter:   false,
+            cpu_filter:      false,
+            ram_filter:      false,
+            http_url:        String::new(),
+            ip_api_url:      String::new(),
+            timeout_secs:    1,
+            filter_callback: Some(Box::new(move || flag.set(true))),
+        };
+        protection.on_fail();
+        assert!(called.get());
+    }
 }

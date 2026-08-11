@@ -59,6 +59,11 @@ impl ProtectionBuilder {
         self
     }
 
+    pub fn filtered(mut self, callback: impl Fn() + 'static) -> Self {
+        self.inner.filter_callback = Some(Box::new(callback));
+        self
+    }
+
     pub fn init(self) {
         self.inner.run();
     }

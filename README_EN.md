@@ -203,6 +203,32 @@ ProtectionBuilder::new()
 
 ---
 
+### `.filtered(|| ...)` — What to do when a check fails
+
+By default, if any filter fails, the program silently terminates via `exit(0)`. If you pass a function to `.filtered(...)`, that function will be called instead of exiting the program when a check fails.
+
+```rust
+use anti_vm::ProtectionBuilder;
+
+fn main() {
+    ProtectionBuilder::new()
+        .set_vm(true)
+        .set_http(true)
+        .filtered(|| {
+            // Your own logic instead of terminating the program
+            println!("Looks like an unwanted environment!");
+        })
+        .init();
+
+    // Code continues to run, even if a filter fails
+    println!("Program continues to run");
+}
+```
+
+> **Note:** if `.filtered(...)` is not set, the behavior remains the same — the program exits when any filter fails.
+
+---
+
 ## Check Execution Order
 
 ```

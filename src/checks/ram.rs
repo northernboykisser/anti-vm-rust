@@ -1,5 +1,3 @@
-use std::process;
-
 use sysinfo::System;
 
 use crate::config::MIN_RAM_BYTES;
@@ -10,7 +8,7 @@ impl Protection {
         let mut sys = System::new();
         sys.refresh_memory();
         if sys.total_memory() < MIN_RAM_BYTES {
-            process::exit(0);
+            self.on_fail();
         }
     }
 }

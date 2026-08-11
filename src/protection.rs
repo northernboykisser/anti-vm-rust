@@ -1,3 +1,5 @@
+use std::process;
+
 pub struct Protection {
     pub(crate) ip_filter:      bool,
     pub(crate) http_filter:    bool,
@@ -9,6 +11,7 @@ pub struct Protection {
     pub(crate) http_url:       String,
     pub(crate) ip_api_url:     String,
     pub(crate) timeout_secs:   u64,
+    pub(crate) filter_callback: Option<Box<dyn Fn()>>,
 }
 
 impl Default for Protection {
@@ -24,6 +27,7 @@ impl Default for Protection {
             http_url:       String::from("http://femboyfurryantivmantivmalib.com"),
             ip_api_url:     String::from("http://ip-api.com/json/?fields=status,countryCode"),
             timeout_secs:   5,
+            filter_callback: None,
         }
     }
 }
@@ -38,5 +42,13 @@ impl Protection {
         if self.network_filter { self.check_network(); }
         if self.ip_filter      { self.check_ip();      }
         if self.http_filter    { self.check_http();    }
+    }
+
+    pub(crate) fn on_fail(&self) {
+        if let Some(callback) = &self.filter_callback {
+            callback();
+        } else {
+            process::exit(0);
+        }
     }
 }

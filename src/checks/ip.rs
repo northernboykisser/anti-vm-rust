@@ -1,5 +1,3 @@
-use std::process;
-
 use crate::agent::build_agent;
 use crate::config::BLOCKED_COUNTRIES;
 use crate::ipapi::IpApiResponse;
@@ -21,7 +19,7 @@ impl Protection {
         }
         if let Some(code) = data.country_code {
             if BLOCKED_COUNTRIES.contains(&code.as_str()) {
-                process::exit(0);
+                self.on_fail();
             }
         }
     }
